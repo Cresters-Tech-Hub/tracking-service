@@ -1,5 +1,6 @@
-package com.cresters.tracker.response;
+package com.cresters.tracker.dto.response;
 
+import com.cresters.tracker.model.Location;
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,6 +8,6 @@ import lombok.Data;
 @Builder
 public class UpdateDriverLocationResponse {
     private long id;
-    private String location;
+    private Location location;
 
 }

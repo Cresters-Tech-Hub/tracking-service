@@ -1,13 +1,10 @@
 package com.cresters.tracker.controllers;
 
-import com.cresters.tracker.request.CreateDriverRequest;
-import com.cresters.tracker.request.UpdateDriverDestination;
-import com.cresters.tracker.request.UpdateDriverLocationRequest;
-import com.cresters.tracker.response.CreateDriverResponse;
-import com.cresters.tracker.response.DispatchResponse;
-import com.cresters.tracker.response.DriverLocationResponse;
-import com.cresters.tracker.response.UpdateDriverLocationResponse;
-import com.cresters.tracker.service.DriverService;
+import com.cresters.tracker.dto.global.DispatchResponse;
+import com.cresters.tracker.dto.request.DispatchStartAndDestinationRequest;
+import com.cresters.tracker.dto.request.UpdateDriverLocationRequest;
+import com.cresters.tracker.dto.response.*;
+import com.cresters.tracker.service.DispatchService;
 import com.cresters.tracker.utils.ResponseUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +16,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class DispatchController {
 
-    private final DriverService driverService;
+    private final DispatchService driverService;
+
+    //Controllers
+    //Get driverLocation
+    //Update Driver location
+    //Get driver History
 
 
     @PostMapping("/update")
@@ -35,24 +37,11 @@ public class DispatchController {
                 .build());
     }
 
-    @PostMapping("/createDriver")
-    ResponseEntity<DispatchResponse<CreateDriverResponse>>
-    createDriver(@RequestBody @Valid CreateDriverRequest createDriverRequest) {
-        CreateDriverResponse response = driverService.createDriver(createDriverRequest);
-
-        return ResponseEntity.ok().body(DispatchResponse.<CreateDriverResponse>builder()
-                .message(ResponseUtil.SUCC)
-                .status(HttpStatus.OK.value())
-                .data(response)
-                .error("")
-                .build());
-    }
-
     @GetMapping("{driverId}")
-    ResponseEntity<DispatchResponse<DriverLocationResponse>> getDriverLocation(@PathVariable long driverId) {
-        DriverLocationResponse response = driverService.getDriverLocation(driverId);
+    ResponseEntity<DispatchResponse<DispatchInfoResponse>> getDriverLocation(@PathVariable long driverId) {
+        DispatchInfoResponse response = driverService.getDispatchInformation(driverId);
 
-        return ResponseEntity.ok().body(DispatchResponse.<DriverLocationResponse>builder()
+        return ResponseEntity.ok().body(DispatchResponse.<DispatchInfoResponse>builder()
                 .message(ResponseUtil.SUCC)
                 .status(HttpStatus.OK.value())
                 .data(response)
@@ -60,8 +49,8 @@ public class DispatchController {
                 .build());
     }
 
-    @PostMapping("/updateDriverDestination")
-    ResponseEntity<DispatchResponse<DriverLocationResponse>> updateDriverDestination(@RequestBody UpdateDriverDestination driverLocationRequest) {
+    @PostMapping("/updateDriverDestinations")
+    ResponseEntity<DispatchResponse<DriverLocationResponse>> updateDriverDestination(@RequestBody DispatchStartAndDestinationRequest driverLocationRequest) {
         DriverLocationResponse response = driverService.updateDriverDestination(driverLocationRequest);
 
         return ResponseEntity.ok().body(DispatchResponse.<DriverLocationResponse>builder()

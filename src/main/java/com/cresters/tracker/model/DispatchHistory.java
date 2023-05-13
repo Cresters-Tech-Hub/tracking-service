@@ -1,6 +1,6 @@
 package com.cresters.tracker.model;
 
-import jakarta.persistence.Embedded;
+import com.cresters.tracker.constants.CompletionStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DriverHistory {
+public class DispatchHistory {
 
     @Id
     private long id;
@@ -32,15 +32,5 @@ public class DriverHistory {
     LocalTime timeCompleted;
     LocalDateTime expectedTimeToComplete;
 
-
-
-
-
-//    private Location pickUpLocation;
-//    private LocalDateTime startTime;
-//    private LocalDateTime endTime;
-//    @Builder.Default
-//    private boolean isTripCompleted = false;
-//    private LocalTime timeTaken;
 
 }

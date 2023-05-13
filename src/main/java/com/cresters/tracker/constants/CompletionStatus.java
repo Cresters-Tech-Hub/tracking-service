@@ -1,4 +1,4 @@
-package com.cresters.tracker.model;
+package com.cresters.tracker.constants;
 
 import lombok.Data;
 
