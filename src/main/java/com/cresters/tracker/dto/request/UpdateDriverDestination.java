@@ -1,4 +1,4 @@
-package com.cresters.tracker.request;
+package com.cresters.tracker.dto.request;
 
 import com.cresters.tracker.model.Location;
 import lombok.Data;
@@ -8,5 +8,5 @@ public class UpdateDriverDestination {
 
     private long driverId;
     private Location driverDestination;
-    private Location driverStartingPoint;
+
 }

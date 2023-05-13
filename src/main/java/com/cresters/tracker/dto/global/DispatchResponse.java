@@ -1,4 +1,4 @@
-package com.cresters.tracker.response;
+package com.cresters.tracker.dto.global;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
